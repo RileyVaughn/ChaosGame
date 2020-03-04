@@ -117,7 +117,7 @@ function Draw() {
 }
 
 function DrawTriangles(ctx, coords) {
-	
+	ctx.strokeStyle = "black";
     for (let i = 0; i <coords.length; i++){
         ctx.beginPath();
         ctx.moveTo(coords[i][0][0],coords[i][0][1]);
@@ -165,18 +165,21 @@ function MovePoint(a) {
 function CheckWin() {
 	//console.log(point[0],point[1],shaded[0][1],shaded[1][1] )
 	if (point[1] < shaded[0][1] && point[1] > shaded[1][1]) {
-		// n = b*(1-h/a)
+		// n = b*(1-h/a) 
+        
 		let b = .5*(shaded[2][0] - shaded[1][0]);
 		let h = point[1];
 		let a = shaded[0][1]-shaded[1][1];
 		let n = Math.abs(b*(1-h/a));
-		let mid = Math.abs(shaded[0][0] + b);
-		//console.log("here", point[0], mid,n)
+		let mid = Math.abs(shaded[0][0]);
+		
 		if (point[0] < mid+n && point[0] > mid-n){
-			//console.log("w->",point[0],point[1])
+			
 			alert("winner")
 		}
-	}
+		
+    }
+	
 }
 
 
