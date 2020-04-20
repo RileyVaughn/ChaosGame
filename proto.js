@@ -157,6 +157,7 @@ function DrawPoint(ctx, point) {
 
 function MovePoint(a) {
     
+	turnCount = turnCount + 1;
     point = [(point[0] + TRIANGLE[a][0])/2,(point[1] + TRIANGLE[a][1])/2];
 
     Draw();
@@ -176,12 +177,20 @@ function CheckWin() {
 		
 		if (point[0] < mid+n && point[0] > mid-n){
 			
-			alert("winner")
+			OpenWinScreen();
+			
 		}
 		
     }
 	
 }
+
+function OpenWinScreen() {
+	
+	alert("This will be a popup");
+	
+}
+
 
 
 var canvas = document.getElementById('Canvas');
@@ -190,15 +199,18 @@ var ctx = canvas.getContext('2d');
     ctx.translate(20,canvas.height-10);
     ctx.scale(1,-1);
 
+var level = 3;
 
-var tris = InitTris(4);
+
+
+var tris = InitTris(level);
 var coords = InitCoords(TRIANGLE[0],TRIANGLE[1],TRIANGLE[2],tris);
 var shaded = InitRandTri(coords);
 var point = InitPoint();
-
+var turnCount = 0;
+var optimal = level+2;
 
 Draw();
-
 
 
 
