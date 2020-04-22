@@ -127,12 +127,6 @@ function DrawTriangles(ctx, coords) {
         ctx.lineTo(coords[i][0][0],coords[i][0][1]);
         ctx.stroke();
     }
-	
-    
-    
-    
-    
-	
 }
 
 function ShadeTriangle(ctx,tri) {
@@ -186,9 +180,7 @@ function CheckWin() {
 }
 
 function OpenWinScreen() {
-	
 	alert("This will be a popup");
-	
 }
 
 
