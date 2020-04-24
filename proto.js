@@ -1,41 +1,11 @@
-// Lopez just did stuff
+
 
 const TRIANGLE = [[0,0],[800,0],[400,8*86.6]];
 
 
-class Triangle {
-    
-    constructor(a,b,c) {
-        
-        this.a = a;
-        this.b = b;
-        this.c = c;
-        
-    }
-    
-    Split() {
-        
-        let a = this.a;
-        let b = this.b;
-        let c = this.c;
-        
-        
-        let newTris= [new Triangle(a,this.FindMid(a,b),this.FindMid(a,c)),
-                  new Triangle(b,this.FindMid(b,a),this.FindMid(b,c)),
-                  new Triangle(c,this.FindMid(c,a),this.FindMid(c,b))]
-                  //new Triangle(this.FindMid(a,b),this.FindMid(b,c),this.FindMid(c,a))];
-        
-        return newTris;
-    }
-    
-    
-    FindMid(x,y) {
-        return [(x[0]+y[0])/2,(x[1]+y[1])/2,(x[2]+y[2])/2]
-    }
-    
-}
-
-
+//Narrative: Initializes all triangles that make up partial sierpinski triangle in barycentric coords
+//Preconditions: A level of the partial triangle must be input, level must be at least 1 and no more than ~8 or it will lag hard
+//Postconditions: Triangles are initialized in an array, in barycentric coords
 function InitTris(level) {
     
     let tris = [new Triangle([1,0,0],[0,1,0],[0,0,1])];
@@ -57,6 +27,9 @@ function InitTris(level) {
     return tris;
 }
 
+//Narrative: Initializes all cartesian coords that make up triangles
+//Preconditions: Three original points for the big triangle in cartesian coordinates must exist as well as a list of triangles in barycentric coordinates
+//Postconditions: A list of all small triangles described in cartesian coords now exists
 function InitCoords(a,b,c,tris) {
 	
 	let coords = [];
@@ -72,6 +45,9 @@ function InitCoords(a,b,c,tris) {
 	return coords;
 }
 
+//Narrative: Chooses a single random triangle from a list and rearranges its coords so that top is index 0, left 1, and right 2.
+//Preconditions: Three original points for the big triangle in cartesian coordinates must exist as well the three points of the small triangle in barycentric coords.
+//Postconditions: A small triangle described in cartesian coords is returned
 function InitRandTri(coords) {
     
     let i = Math.floor(Math.random() * coords.length)
@@ -93,12 +69,20 @@ function InitRandTri(coords) {
     return tri;
 }
 
+
+//Narrative: Choose one of three starting locations for a point
+//Preconditions: The coords of the original TRIANGLE
+//Postconditions: One of the three coords from TRIANGLE
 function InitPoint() {
 
     let temp = TRIANGLE.slice();
     return temp[Math.floor(Math.random() * 3)];
 }
 
+
+//Narrative: Converts a triangle described in barycentric coords to a triangle described in cartesian coords
+//Preconditions: Three original points for the big triangle in cartesian coordinates must exist as well the three points of the small triangle in barycentric coords.
+//Postconditions: A small triangle described in cartesian coords is returned
 function BaryToCart(a,b,c,p) {
     
     let x = a[0]*p[0]+b[0]*p[1]+c[0]*p[2];
@@ -107,6 +91,10 @@ function BaryToCart(a,b,c,p) {
     return [x,y];
 }
 
+
+//Narrative: Draw all triangles and point to screen
+//Preconditions: A canvas and it’s context must be defined as well as the objects to be drawn
+//Postconditions: All objects are drawn
 function Draw() {
     
     this.ctx.clearRect(-20,-10, this.canvas.height+25, this.canvas.width+10);
@@ -117,6 +105,10 @@ function Draw() {
 
 }
 
+
+//Narrative: Draws all triangles 
+//Preconditions: A context must be defined and triangle coords
+//Postconditions: All objects are drawn
 function DrawTriangles(ctx, coords) {
 	ctx.strokeStyle = "black";
     for (let i = 0; i <coords.length; i++){
@@ -129,6 +121,9 @@ function DrawTriangles(ctx, coords) {
     }
 }
 
+//Narrative: Shades a selected triangle
+//Preconditions: A context must be defined and triangle coords
+//Postconditions: Triangle is shaded
 function ShadeTriangle(ctx,tri) {
     
     ctx.fillStyle = "black"
@@ -141,6 +136,9 @@ function ShadeTriangle(ctx,tri) {
     
 }
 
+//Narrative: Draws the point
+//Preconditions: A context must be defined as well as the point
+//Postconditions: The point is drawn
 function DrawPoint(ctx, point) {
     
     ctx.fillStyle = "red"
@@ -149,6 +147,9 @@ function DrawPoint(ctx, point) {
     ctx.fill();
 }
 
+//Narrative: Moves a point around the screen
+//Preconditions: An input a which is either 1,2,3
+//Postconditions: The point is moved half it’s distance from the selected point
 function MovePoint(a) {
     
 	turnCount = turnCount + 1;
@@ -158,6 +159,10 @@ function MovePoint(a) {
     CheckWin();
 }
 
+
+//Narrative: Checks if the point has been guided to the shaded triangle, if so, the player wins. To check if the point is in the region, the formula ‘n = b*(1-h/a)’  is used
+//Preconditions: The shaded triangle as well as a point must exist
+//Postconditions: Either the player wins or doesn't win
 function CheckWin() {
 	//console.log(point[0],point[1],shaded[0][1],shaded[1][1] )
 	if (point[1] < shaded[0][1] && point[1] > shaded[1][1]) {
