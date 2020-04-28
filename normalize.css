@@ -1,27 +1,40 @@
 body{
-    align-items: center;
-    display: flex;
-    flex-direction: column;
+    
     height:100vh;
-    justify-content: center;
-    margin:0;
-    padding: 50px 100px;
     width:100vw;
 }
 
-canvas{
-    height: 75vh;
-    width: 75vh;
-    display: block;
+
+#topNav{
+    background-color: #333739;
+    box-shadow: 0px 2px 10px rgba(0,0,0,0.4); 
+    color: antiquewhite;
+    font-family: 'Roboto Slab', sans-serif;
+}
+
+#bodyContainer{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+#CanvasCol{
+    padding:0!important;
+}
+
+#bodyContainer{
+    height:100vh;
 }
 
 button{
-    border-radius: 50%;
+    border-radius: 50% !important;
     border: none;
     color: white;
     font-size: 24px;
     padding: 15px;
 }
+
+
 
 #Top{
     background-color: red;

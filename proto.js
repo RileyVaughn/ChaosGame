@@ -1,8 +1,3 @@
-
-
-const TRIANGLE = [[0,0],[800,0],[400,8*86.6]];
-
-
 //Narrative: Initializes all triangles that make up partial sierpinski triangle in barycentric coords
 //Preconditions: A level of the partial triangle must be input, level must be at least 1 and no more than ~8 or it will lag hard
 //Postconditions: Triangles are initialized in an array, in barycentric coords
@@ -75,7 +70,7 @@ function InitRandTri(coords) {
 //Postconditions: One of the three coords from TRIANGLE
 function InitPoint() {
 
-    let temp = TRIANGLE.slice();
+    let temp = triangle.slice();
     return temp[Math.floor(Math.random() * 3)];
 }
 
@@ -97,7 +92,7 @@ function BaryToCart(a,b,c,p) {
 //Postconditions: All objects are drawn
 function Draw() {
     
-    this.ctx.clearRect(-20,-10, this.canvas.height+25, this.canvas.width+10);
+    Clear();
     
     DrawTriangles(ctx,coords);
     ShadeTriangle(ctx,shaded);
@@ -153,7 +148,7 @@ function DrawPoint(ctx, point) {
 function MovePoint(a) {
     
 	turnCount = turnCount + 1;
-    point = [(point[0] + TRIANGLE[a][0])/2,(point[1] + TRIANGLE[a][1])/2];
+    point = [(point[0] + triangle[a][0])/2,(point[1] + triangle[a][1])/2];
 
     Draw();
     CheckWin();
@@ -188,26 +183,68 @@ function OpenWinScreen() {
 	alert("This will be a popup");
 }
 
+function Clear(){
+ ctx.clearRect(0,0,canvas.width,canvas.height);
+}
 
 
 var canvas = document.getElementById('Canvas');
 var ctx = canvas.getContext('2d');
-    canvas.tabIndex = 0;
-    ctx.translate(20,canvas.height-10);
-    ctx.scale(1,-1);
+
+var container = document.getElementById("CanvasCol");
+canvas.height = container.offsetHeight;
+canvas.width = container.offsetWidth;
+
+canvas.tabIndex = 0;
+ctx.translate(0,canvas.height);
+ctx.scale(1,-1);
+
+var PAD = 5;
+var triangle = [[PAD,PAD],[canvas.width-PAD,PAD],[canvas.width/2,canvas.height-PAD]];
 
 var level = 3;
 
-
-
 var tris = InitTris(level);
-var coords = InitCoords(TRIANGLE[0],TRIANGLE[1],TRIANGLE[2],tris);
+var coords = InitCoords(triangle[0],triangle[1],triangle[2],tris);
 var shaded = InitRandTri(coords);
 var point = InitPoint();
 var turnCount = 0;
 var optimal = level+2;
 
-Draw();
+window.addEventListener("resize", ResizeCanvas);
+
+function ResizeCanvas(){
+    Clear();
+    var cSize = ContainerSize();
+    canvas.width = cSize[0];
+    canvas.height = cSize[1];
+    triangle = [[PAD,PAD],[canvas.width-PAD,PAD],[canvas.width/2,canvas.height-PAD]];
+    tris = InitTris(level);
+    coords = InitCoords(triangle[0],triangle[1],triangle[2],tris);
+    ctx.translate(0,canvas.height);
+    ctx.scale(1,-1);
+    shaded = InitRandTri(coords);
+     point = InitPoint();
+    Draw();
+}
+
+function ContainerSize(){
+    var sizeArr = new Array(2);
+    // Get width and height of the window excluding scrollbars
+    var container = document.getElementById("CanvasCol");
+    var w = container.offsetWidth;
+    var h = container.offsetWidth;
+    
+    sizeArr[0] = w;
+    sizeArr[1] = h;
+
+    // Display result inside a div element
+//    document.getElementById("result").innerHTML = " Col Width: " + w + ", " + " Col Height: " + h;
+    
+    return sizeArr;
+}
+
+ResizeCanvas();
 
 
 

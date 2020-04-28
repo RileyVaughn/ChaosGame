@@ -1,20 +1,55 @@
 <!DOCTYPE html>
 <html lang='en'>
-<header>
-    <title> Chaos Game ProtoType</title>
-    <meta charset="utf-8">
-    <link rel="stylesheet" type = "text/css" href="normalize.css"/>
-    
-</header>
+<head>
+  <title>Chaos Game</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="normalize.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+</head>
 <body>
-
+    <div id = "navContainer" class="container-fluid">
+        
+        <div id = "topNav" class="row">
+            <div id= "TopNav" class="col text-center">Chaos Game</div>
+        </div>
+        
+    </div>
     
-    <button id="Top" onclick="MovePoint(2)"></button>
-    <canvas id="Canvas" width=900 height=800 ></canvas>
-    <button id="Left" onclick="MovePoint(0)"></button>
-    <button id="Right" onclick="MovePoint(1)"></button>
+    <div id= "bodyContainer" class="container">      
+        <div class="row">
+            <div class="col text-center"></div>
+            <div class="col text-center">
+                <button id="Top" onclick="MovePoint(2)"></button>
+            </div>
+            <div class="col text-center"></div>
+        </div>
+        
+        <div class="row">
+            <div class="text-center"></div>
+            <div id = CanvasCol class="mx-auto">
+                <canvas id="Canvas"></canvas>
+            </div>
+            <div class="text-center"></div>
+        </div>
+        
+        <div class="row">
+            <div class="col text-center">
+                <button id="Left" onclick="MovePoint(0)"></button>
+            </div>
+            <div id="result" class="col text-center"></div>
+            <div class="col text-center">
+                <button id="Right" onclick="MovePoint(1)"></button>
+            </div>
+        </div>
+        
+    </div>
+    
     
     <script src="tri.js"></script>
     <script src="proto.js"></script>
-    
+    </body>
 </html>
