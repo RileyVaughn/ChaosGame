@@ -1,82 +1,102 @@
 <!DOCTYPE html>
 <html lang='en'>
+
 <head>
-  <title>Chaos Game</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Chaos Game</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href='https://fonts.googleapis.com/css?family=Raleway' rel='stylesheet'>
     <link rel="stylesheet" href="normalize.css">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
     <script src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
 </head>
+
 <body>
-<!--    Navigation-->    
-<div id = "navContainer" class="container-fluid">
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a id="logoWrap" class="navbar-brand" href="#"><img id="logo" src="images/chaoslogo.png"></a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
 
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-      </li>
-      <li class="nav-item">
-          Difficulty:
-          <input type="range" min="1" max="3" value="1" class="slider" id="myRange">
-      </li>
-    <li class="nav-item">
-    <a class="nav-link" data-toggle="modal" data-target="#myModal">Instructions</a>
-    <!-- The Modal -->
-    <div class="modal" id="myModal">
-        <div class="modal-dialog">
-            <div class="modal-content">
+    <!--    Navigation-->
+    <div id="navContainer" class="container-fluid">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a id="logoWrap" class="navbar-brand" href="#"><img id="logo" src="images/chaoslogo.png"></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
 
-            <!-- Modal Header -->
-            <div id="modalHeader" class="modal-header">
-                <h4 class="modal-title">Modal Heading</h4>
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="modal" data-target="#myModal">Instructions</a>
+                        <!-- The Modal -->
+                        <div class="modal" id="myModal">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+
+                                    <!-- Modal Header -->
+                                    <div id="modalHeader" class="modal-header">
+                                        <h1 class="modal-title">The Chaos Game</h1>
+                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                    </div>
+
+                                    <!-- Modal body -->
+                                    <div class="modal-body">
+                                        <h2>How to Play the Chaos Game</h2>
+                                        <p>When you open the chaos game, you see a game board that consists of the Sierpinski triangle.</p>
+                                        <p>One of these triangles is colored green; this is the Target.</p>
+                                        <p>You also see a point colored red at the lower right hand corner of the triangle. This is the Seed.</p>
+                                        <p>Your goal is to move the Seed into the INTERIOR of the Target in as few moves as possible.</p>
+                                        <p>Each time you make a "move" in the chaos game, this point will move to a new location in the game board. This becomes your current location.
+                                        </p>
+                                        <h2>The Moves</h2>
+                                        <p>There are three possible moves in this chaos game.</p>
+                                        <p>If you click on the top (red) vertex, your current location moves half the distance to the topmost vertex.</p>
+                                        <p>Similarly, clicking on the lower left (blue) or lower right (green) vertex, moves the current location half the distance to that vertex.</p>
+                                        <p>By a judicious choice of moves, you should be able to move the seed into the INTERIOR of the Target in just x moves depending on the level.</p>
+                                        <p>This is indicated in the Best Score window. Your score (the number of moves you have made) is recorded in the window called Your Score.</p>
+                                        <h2>Resetting the Target</h2>
+                                        <p>To replay the current game again (without changing Target, click on Try Again. To change to a new Target, click on Restart. The computer randomly selects a new Target.</p>
+                                        <h2>The Algorithm</h2>
+                                        <p>There is an algorithm for moving the starting point into the interior of the Target in exactly 4 moves, no matter what Target you start with. Your job is to discover this algorithm. You should be able to explain in advance how to move the Starting Point into the Target in a couple of sentences, no matter where the Target is located.</p>
+                                        <h2>Game Modes</h2>
+                                        <p>In the game menu you will see a difficulty slider. Adjusting the slider will lead you to find chaos games with a Target at deeper levels of the Sierpinski triangle. The algorithm that you developed at the Novice level should help you maneuver through these more difficult games</p>
+
+                                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        Difficulty:
+                        <input type="range" min="1" max="3" value="1" class="slider" id="myRange">
+                    </li>
+
+                </ul>
             </div>
+        </nav>
+    </div>
 
-            <!-- Modal body -->
-            <div class="modal-body">
-                <p></p><br>
-                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-            </div>
+
+    <div id="bodyContainer" class="container">
+
+
+        <!-- Modal -->
+        <div class="modal fade" id="winModal" role="dialog">
+            <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title"><strong>Congratulations,</strong> you won! </h4>
+                    </div>
+                    <button type="button" class="btn btn-primary" id="myBtn">Restart</button>
+                </div>
 
             </div>
         </div>
-    </div>
-    </li>
-      </ul>
-      </div>
-</nav>
-     </div>   
 
-    
-    <div id= "bodyContainer" class="container"> 
-        
-      
-  <!-- Modal -->
-  <div class="modal fade" id="winModal" role="dialog">
-    <div class="modal-dialog">
-    
-      <!-- Modal content-->
-      <div class="modal-content">
-        <div class="modal-header">
-          <h4 class="modal-title"><strong>Congratulations,</strong> you won! </h4>
-        </div>
-          <button type="button" class="btn btn-primary" id="myBtn">Restart</button>
-      </div>
-      
-    </div>
-  </div>
-        
         <div class="row">
             <div class="col text-center"></div>
             <div class="col text-center">
@@ -84,15 +104,15 @@
             </div>
             <div class="col text-center"></div>
         </div>
-        
+
         <div class="row">
             <div class="text-center"></div>
-            <div id = CanvasCol class="mx-auto">
+            <div id=CanvasCol class="mx-auto">
                 <canvas id="Canvas"></canvas>
             </div>
             <div class="text-center"></div>
         </div>
-        
+
         <div class="row">
             <div class="col text-center">
                 <button id="Left" onclick="MovePoint(0)"></button>
@@ -102,11 +122,12 @@
                 <button id="Right" onclick="MovePoint(1)"></button>
             </div>
         </div>
-        
+
     </div>
-    
-    
+
+
     <script src="tri.js"></script>
     <script src="proto.js"></script>
-    </body>
+</body>
+
 </html>
