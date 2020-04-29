@@ -201,23 +201,27 @@ function MovePoint(a) {
 //Preconditions: The shaded triangle as well as a point must exist
 //Postconditions: Either the player wins or doesn't win
 function CheckWin() {
-    //console.log(point[0],point[1],shaded[0][1],shaded[1][1] )
-    if (point[1] < shaded[0][1] && point[1] > shaded[1][1]) {
-        // n = b*(1-h/a) 
+    
+	let px = point[0];
+	let py = point[1];
+	
+	let x1 = shaded[0][0];
+	let y1 = shaded[0][1];
+	let x2 = shaded[1][0];
+	let y2 = shaded[1][1];
+	let x3 = shaded[2][0];
+	let y3 = shaded[2][1];
 
-        let b = .5 * (shaded[2][0] - shaded[1][0]);
-        let h = point[1];
-        let a = shaded[0][1] - shaded[1][1];
-        let n = Math.abs(b * (1 - h / a));
-        let mid = Math.abs(shaded[0][0]);
-
-        if (point[0] < mid + n && point[0] > mid - n) {
-
-            OpenWinScreen();
-
-        }
-
-    }
+	
+	let areaOrig = Math.abs((x2-x1)*(y3-y1) - (x3-x1)*(y2-y1));
+	
+	let area1 = Math.abs( (x1-px)*(y2-py) - (x2-px)*(y1-py));
+    let area2 = Math.abs( (x2-px)*(y3-py) - (x3-px)*(y2-py));
+    let area3 = Math.abs( (x3-px)*(y1-py) - (x1-px)*(y3-py));
+	//console.log(area1, area2, area3,area1 + area2 + area3, areaOrig )
+	if (area1 + area2 + area3 == areaOrig) {
+		OpenWinScreen();
+	}
 
 }
 
