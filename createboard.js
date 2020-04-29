@@ -18,11 +18,14 @@ function InitGame(lev) {
 }
 
 <<<<<<< HEAD:createboard.js
+<<<<<<< HEAD:createboard.js
 
 <<<<<<< HEAD
 function CallRestart(){
     RestartGame(level);
 }
+=======
+>>>>>>> a6f9458d8586798a485048128d493bc5d5e405ff:proto.js
 =======
 >>>>>>> a6f9458d8586798a485048128d493bc5d5e405ff:proto.js
 
@@ -196,6 +199,7 @@ function ContainerSize() {
 }
 
 <<<<<<< HEAD:createboard.js
+<<<<<<< HEAD:createboard.js
 
 <<<<<<< HEAD
 <<<<<<< HEAD:proto.js
@@ -214,15 +218,21 @@ const input = document.querySelector("input");
 =======
 
 >>>>>>> a6f9458d8586798a485048128d493bc5d5e405ff:proto.js
+=======
+
+>>>>>>> a6f9458d8586798a485048128d493bc5d5e405ff:proto.js
 //Narrative: Sets the level to what the level slider is at
 //Preconditions: The canvas must exist
 //Postconditions: The level is reset
 function SetLevel(){
 <<<<<<< HEAD:createboard.js
+<<<<<<< HEAD:createboard.js
 <<<<<<< HEAD
 >>>>>>> a6f9458d8586798a485048128d493bc5d5e405ff:createboard.js
 =======
 >>>>>>> a6f9458d8586798a485048128d493bc5d5e405ff
+=======
+>>>>>>> a6f9458d8586798a485048128d493bc5d5e405ff:proto.js
 =======
 >>>>>>> a6f9458d8586798a485048128d493bc5d5e405ff:proto.js
 
