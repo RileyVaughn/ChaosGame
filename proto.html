@@ -19,6 +19,7 @@
     <!--    Navigation-->
     <div id="navContainer" class="container-fluid">
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <nav class="navbar navbar-expand-md navbar-light bg-light">
             <a id="logoWrap" class="navbar-brand" href="#"><img id="logo" src="images/chaoslogo.png"></a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -26,6 +27,9 @@
 
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" onclick="CallRestart()">Restart Game</a>
+                    </li>
                     <li class="nav-item">
                         <a class="nav-link" data-toggle="modal" data-target="#myModal">Instructions</a>
                         <!-- The Modal -->
@@ -91,7 +95,7 @@
                     <div class="modal-header">
                         <h4 class="modal-title"><strong>Congratulations,</strong> you won! </h4>
                     </div>
-                    <button type="button" class="btn btn-primary" id="myBtn">Restart</button>
+                    <button onclick="CallRestart()" type="button" class="btn btn-primary" id="myBtn">Restart</button>
                 </div>
 
             </div>
@@ -127,7 +131,11 @@
 
 
     <script src="tri.js"></script>
-    <script src="proto.js"></script>
+    <script src="init.js"></script>
+	<script src="createboard.js"></script>
+	<script src="draw.js"></script>
+	<script src="move.js"></script>
+	<script>RestartGame(level);</script>
 </body>
 
 </html>

@@ -1,3 +1,5 @@
+
+
 //Narrative: Initializes global variables for game
 //Preconditions: nothing
 //Postconditions: The game is reset to the following conditions
@@ -15,10 +17,17 @@ function InitGame(lev) {
 
 }
 
-function Clear() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-}
+<<<<<<< HEAD:createboard.js
 
+<<<<<<< HEAD
+function CallRestart(){
+    RestartGame(level);
+}
+=======
+>>>>>>> a6f9458d8586798a485048128d493bc5d5e405ff:proto.js
+
+=======
+>>>>>>> a6f9458d8586798a485048128d493bc5d5e405ff
 
 //Narrative: Completley Restarts the game
 //Preconditions: nothing
@@ -30,6 +39,15 @@ function RestartGame(lev) {
 	ResizeCanvas();
 	
 	
+}
+
+
+
+//Narrative: Clears the Canvas
+//Preconditions: nothing
+//Postconditions: The Canvis cleared
+function Clear() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
 }
 
 
@@ -58,6 +76,8 @@ function InitTris(level) {
     return tris;
 }
 
+
+
 //Narrative: Initializes all cartesian coords that make up triangles
 //Preconditions: Three original points for the big triangle in cartesian coordinates must exist as well as a list of triangles in barycentric coordinates
 //Postconditions: A list of all small triangles described in cartesian coords now exists
@@ -76,6 +96,8 @@ function InitCoords(a, b, c, tris) {
     return coords;
 }
 
+
+
 //Narrative: Chooses a random position
 //Preconditions: A length two choose any pos from
 //Postconditions: A pos is returned
@@ -85,6 +107,7 @@ function RandomPos(length) {
 
     return i;
 }
+
 
 
 //Narrative: Chooses a triangle from a list based on Pos and rearranges its coords so that top is index 0, left 1, and right 2.
@@ -110,6 +133,8 @@ function InitShadedTri(coords, i) {
 
 }
 
+
+
 //Narrative: Choose one of three starting locations for a point
 //Preconditions: The coords of the original TRIANGLE
 //Postconditions: One of the three coords from TRIANGLE
@@ -118,6 +143,7 @@ function InitPoint(pos) {
     let temp = triangle.slice();
     return temp[pos];
 }
+
 
 
 //Narrative: Converts a triangle described in barycentric coords to a triangle described in cartesian coords
@@ -132,147 +158,10 @@ function BaryToCart(a, b, c, p) {
 }
 
 
-//Narrative: Draw all triangles and point to screen
-//Preconditions: A canvas and it’s context must be defined as well as the objects to be drawn
-//Postconditions: All objects are drawn
-function Draw() {
 
-    Clear();
-
-    DrawTriangles(ctx, coords);
-    ShadeTriangle(ctx, shaded);
-    DrawPoint(ctx, point);
-
-}
-
-
-//Narrative: Draws all triangles 
-//Preconditions: A context must be defined and triangle coords
-//Postconditions: All objects are drawn
-function DrawTriangles(ctx, coords) {
-    ctx.strokeStyle = "black";
-    for (let i = 0; i < coords.length; i++) {
-        ctx.beginPath();
-        ctx.moveTo(coords[i][0][0], coords[i][0][1]);
-        ctx.lineTo(coords[i][1][0], coords[i][1][1]);
-        ctx.lineTo(coords[i][2][0], coords[i][2][1]);
-        ctx.lineTo(coords[i][0][0], coords[i][0][1]);
-        ctx.stroke();
-    }
-}
-
-//Narrative: Shades a selected triangle
-//Preconditions: A context must be defined and triangle coords
-//Postconditions: Triangle is shaded
-function ShadeTriangle(ctx, tri) {
-
-    ctx.fillStyle = "black"
-    ctx.beginPath();
-    ctx.moveTo(tri[0][0], tri[0][1]);
-    ctx.lineTo(tri[1][0], tri[1][1]);
-    ctx.lineTo(tri[2][0], tri[2][1]);
-    ctx.lineTo(tri[0][0], tri[0][1]);
-    ctx.fill();
-
-}
-
-//Narrative: Draws the point
-//Preconditions: A context must be defined as well as the point
-//Postconditions: The point is drawn
-function DrawPoint(ctx, point) {
-
-    ctx.fillStyle = "red"
-    ctx.beginPath();
-    ctx.arc(point[0], point[1], 4, 0, Math.PI * 2);
-    ctx.fill();
-}
-
-//Narrative: Moves a point around the screen
-//Preconditions: An input a which is either 1,2,3
-//Postconditions: The point is moved half it’s distance from the selected point
-function MovePoint(a) {
-
-    turnCount = turnCount + 1;
-    point = [(point[0] + triangle[a][0]) / 2, (point[1] + triangle[a][1]) / 2];
-
-    Draw();
-    CheckWin();
-}
-
-
-//Narrative: Checks if the point has been guided to the shaded triangle, if so, the player wins. To check if the point is in the region, the formula ‘n = b*(1-h/a)’  is used
-//Preconditions: The shaded triangle as well as a point must exist
-//Postconditions: Either the player wins or doesn't win
-function CheckWin() {
-    
-	let px = point[0];
-	let py = point[1];
-	
-	let x1 = shaded[0][0];
-	let y1 = shaded[0][1];
-	let x2 = shaded[1][0];
-	let y2 = shaded[1][1];
-	let x3 = shaded[2][0];
-	let y3 = shaded[2][1];
-
-	
-	let areaOrig = Math.abs((x2-x1)*(y3-y1) - (x3-x1)*(y2-y1));
-	
-	let area1 = Math.abs( (x1-px)*(y2-py) - (x2-px)*(y1-py));
-    let area2 = Math.abs( (x2-px)*(y3-py) - (x3-px)*(y2-py));
-    let area3 = Math.abs( (x3-px)*(y1-py) - (x1-px)*(y3-py));
-	//console.log(area1, area2, area3,area1 + area2 + area3, areaOrig )
-	if (area1 + area2 + area3 == areaOrig) {
-		OpenWinScreen();
-	}
-
-}
-
-function SetLevel(){
-    
-//    let i = document.querySelector('input');
-    
-    var newLevel = document.getElementById("myRange").value;
-    
-    //alert("value set to: " + newLevel);
-    
-    level = parseInt(newLevel)+1;
-    
-    //alert("Level set to: " + level);
-    
-    RestartGame(level);
-}
-
-
-var canvas = document.getElementById('Canvas');
-var ctx = canvas.getContext('2d');
-
-var container = document.getElementById("CanvasCol");
-canvas.height = container.offsetHeight;
-canvas.width = container.offsetWidth;
-
-canvas.tabIndex = 0;
-ctx.translate(0, canvas.height);
-ctx.scale(1, -1);
-
-var PAD = 5;
-var triangle = [[PAD, PAD], [canvas.width - PAD, PAD], [canvas.width / 2, canvas.height - PAD]];
-
-var level = 2;
-var turnCount;
-var optimal;
-
-var tris;
-var coords;
-var shadePos;
-var shaded;
-var pointPos;
-var point;
-InitGame(level);
-
-window.addEventListener("resize", ResizeCanvas);
-RestartGame(level);
-
+//Narrative: Allows for dynamic resizing of screen when browser is resized
+//Preconditions: Teh canvas must exist
+//Postconditions: The canvas is resized
 function ResizeCanvas() {
     Clear();
     var cSize = ContainerSize();
@@ -288,6 +177,10 @@ function ResizeCanvas() {
     Draw();
 }
 
+
+//Narrative: Checks the size of the contianer holding the canvas
+//Preconditions: The canvas must exist
+//Postconditions: The size is checked
 function ContainerSize() {
     var sizeArr = new Array(2);
     // Get width and height of the window excluding scrollbars
@@ -298,27 +191,55 @@ function ContainerSize() {
     sizeArr[0] = w;
     sizeArr[1] = h;
 
-    // Display result inside a div element
-    //    document.getElementById("result").innerHTML = " Col Width: " + w + ", " + " Col Height: " + h;
 
     return sizeArr;
 }
 
-window.addEventListener("input", SetLevel);
+<<<<<<< HEAD:createboard.js
+
+<<<<<<< HEAD
+<<<<<<< HEAD:proto.js
+$('input[type="range"]').on('mousemove touchmove', function() {
+
+  $val = $(this).val();
+  $thumb = $(this).siblings('.thumb');
+ 
+  $thumb.css('background-position-x', $val + '%');
+});
 
 const input = document.querySelector("input");
+=======
+=======
+>>>>>>> a6f9458d8586798a485048128d493bc5d5e405ff
+=======
 
-input.addEventListener("input",SetLevel);
+>>>>>>> a6f9458d8586798a485048128d493bc5d5e405ff:proto.js
+//Narrative: Sets the level to what the level slider is at
+//Preconditions: The canvas must exist
+//Postconditions: The level is reset
+function SetLevel(){
+<<<<<<< HEAD:createboard.js
+<<<<<<< HEAD
+>>>>>>> a6f9458d8586798a485048128d493bc5d5e405ff:createboard.js
+=======
+>>>>>>> a6f9458d8586798a485048128d493bc5d5e405ff
+=======
+>>>>>>> a6f9458d8586798a485048128d493bc5d5e405ff:proto.js
 
-function OpenWinScreen() {
-    $("#winModal").modal("show");
+    var newLevel = document.getElementById("myRange").value;
+
+    level = parseInt(newLevel)+1;
+    
+    RestartGame(level);
 }
 
-$("#winModal").on('shown.bs.modal', function () {
 
-    // Hide the Modal
-    $("#myBtn").click(function () {
-        $("#winModal").modal("hide");
-    });
 
-});
+
+window.addEventListener("resize", ResizeCanvas);
+
+
+window.addEventListener("input", SetLevel);
+const input = document.querySelector("input");
+input.addEventListener("input",SetLevel);
+
