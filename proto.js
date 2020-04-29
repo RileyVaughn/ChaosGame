@@ -15,12 +15,15 @@ function InitGame(lev) {
 
 }
 
+function Clear() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+}
 
 
 //Narrative: Completley Restarts the game
 //Preconditions: nothing
 //Postconditions: The game is restarted
-function RestartGame(lev = 3) {
+function RestartGame(lev) {
 	
 	Clear();
 	InitGame(lev);
@@ -221,14 +224,19 @@ function CheckWin() {
 
 }
 
-function Clear() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-}
-
-function GetLevel(){
+function SetLevel(){
+    
+//    let i = document.querySelector('input');
+    
     var newLevel = document.getElementById("myRange").value;
-    alert("level: " + newLevel);
-//    return newLevel + 1;
+    
+    //alert("value set to: " + newLevel);
+    
+    level = parseInt(newLevel)+1;
+    
+    //alert("Level set to: " + level);
+    
+    RestartGame(level);
 }
 
 
@@ -246,7 +254,7 @@ ctx.scale(1, -1);
 var PAD = 5;
 var triangle = [[PAD, PAD], [canvas.width - PAD, PAD], [canvas.width / 2, canvas.height - PAD]];
 
-var level = 4;
+var level = 2;
 var turnCount;
 var optimal;
 
@@ -259,7 +267,7 @@ var point;
 InitGame(level);
 
 window.addEventListener("resize", ResizeCanvas);
-RestartGame();
+RestartGame(level);
 
 function ResizeCanvas() {
     Clear();
@@ -292,7 +300,11 @@ function ContainerSize() {
     return sizeArr;
 }
 
+window.addEventListener("input", SetLevel);
 
+const input = document.querySelector("input");
+
+input.addEventListener("input",SetLevel);
 
 function OpenWinScreen() {
     $("#winModal").modal("show");
