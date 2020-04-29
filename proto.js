@@ -205,15 +205,17 @@ function MovePoint(a) {
 //Postconditions: Either the player wins or doesn't win
 function CheckWin() {
     
+	let buff = 1;
+	
 	let px = point[0];
 	let py = point[1];
 	
 	let x1 = shaded[0][0];
-	let y1 = shaded[0][1];
-	let x2 = shaded[1][0];
-	let y2 = shaded[1][1];
-	let x3 = shaded[2][0];
-	let y3 = shaded[2][1];
+	let y1 = shaded[0][1]-buff;
+	let x2 = shaded[1][0]+buff;
+	let y2 = shaded[1][1]+buff;
+	let x3 = shaded[2][0]+buff;
+	let y3 = shaded[2][1]+buff;
 
 	
 	let areaOrig = Math.abs((x2-x1)*(y3-y1) - (x3-x1)*(y2-y1));
