@@ -179,10 +179,6 @@ function CheckWin() {
 	
 }
 
-function OpenWinScreen() {
-	alert("This will be a popup");
-}
-
 function Clear(){
  ctx.clearRect(0,0,canvas.width,canvas.height);
 }
@@ -245,6 +241,21 @@ function ContainerSize(){
 }
 
 ResizeCanvas();
+
+function OpenWinScreen(){
+     $("#winModal").modal("show");
+}
+
+$("#winModal").on('shown.bs.modal',function(){
+    
+     // Hide the Modal
+  $("#myBtn").click(function(){
+    $("#winModal").modal("hide");
+  });
+  
+});
+    
+
 
 
 
