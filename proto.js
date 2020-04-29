@@ -40,13 +40,22 @@ function InitCoords(a,b,c,tris) {
 	return coords;
 }
 
-//Narrative: Chooses a single random triangle from a list and rearranges its coords so that top is index 0, left 1, and right 2.
+//Narrative: Chooses a random position
+//Preconditions: A length two choose any pos from
+//Postconditions: A pos is returned
+function RandomPos(length) {
+    
+    let i = Math.floor(Math.random() * length)
+    
+	return i;
+}
+
+
+//Narrative: Chooses a triangle from a list based on Pos and rearranges its coords so that top is index 0, left 1, and right 2.
 //Preconditions: Three original points for the big triangle in cartesian coordinates must exist as well the three points of the small triangle in barycentric coords.
 //Postconditions: A small triangle described in cartesian coords is returned
-function InitRandTri(coords) {
-    
-    let i = Math.floor(Math.random() * coords.length)
-    
+function InitShadedTri(coords, i) {
+
 	let tri = coords[i];
 	
 	//Make top [0], left [1], right [2]
@@ -62,16 +71,17 @@ function InitRandTri(coords) {
 	}
 	
     return tri;
-}
 
+
+}
 
 //Narrative: Choose one of three starting locations for a point
 //Preconditions: The coords of the original TRIANGLE
 //Postconditions: One of the three coords from TRIANGLE
-function InitPoint() {
+function InitPoint(pos) {
 
     let temp = triangle.slice();
-    return temp[Math.floor(Math.random() * 3)];
+    return temp[pos];
 }
 
 
@@ -202,8 +212,10 @@ var level = 3;
 
 var tris = InitTris(level);
 var coords = InitCoords(triangle[0],triangle[1],triangle[2],tris);
-var shaded = InitRandTri(coords);
-var point = InitPoint();
+var shadePos = RandomPos(coords.length);
+var shaded = InitShadedTri(coords, shadePos);
+var pointPos =  RandomPos(3);
+var point = InitPoint(pointPos);
 var turnCount = 0;
 var optimal = level+2;
 
@@ -215,12 +227,12 @@ function ResizeCanvas(){
     canvas.width = cSize[0];
     canvas.height = cSize[1];
     triangle = [[PAD,PAD],[canvas.width-PAD,PAD],[canvas.width/2,canvas.height-PAD]];
-    tris = InitTris(level);
+   
     coords = InitCoords(triangle[0],triangle[1],triangle[2],tris);
     ctx.translate(0,canvas.height);
     ctx.scale(1,-1);
-    shaded = InitRandTri(coords);
-     point = InitPoint();
+    shaded = InitShadedTri(coords, shadePos);
+    point = InitPoint(pointPos);
     Draw();
 }
 
