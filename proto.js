@@ -16,6 +16,21 @@ function InitGame(lev) {
 }
 
 
+
+//Narrative: Completley Restarts the game
+//Preconditions: nothing
+//Postconditions: The game is restarted
+function RestartGame(lev = 3) {
+	
+	Clear();
+	InitGame(lev);
+	ResizeCanvas();
+	
+	
+}
+
+
+
 //Narrative: Initializes all triangles that make up partial sierpinski triangle in barycentric coords
 //Preconditions: A level of the partial triangle must be input, level must be at least 1 and no more than ~8 or it will lag hard
 //Postconditions: Triangles are initialized in an array, in barycentric coords
@@ -244,6 +259,7 @@ var point;
 InitGame(level);
 
 window.addEventListener("resize", ResizeCanvas);
+RestartGame();
 
 function ResizeCanvas() {
     Clear();
@@ -276,7 +292,7 @@ function ContainerSize() {
     return sizeArr;
 }
 
-ResizeCanvas();
+
 
 function OpenWinScreen() {
     $("#winModal").modal("show");
