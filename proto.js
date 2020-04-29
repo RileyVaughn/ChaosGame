@@ -1,3 +1,22 @@
+
+//Narrative: Initializes global variables for game
+//Preconditions: nothing
+//Postconditions: The game is reset to the following conditions
+function InitGame(lev){
+	level = lev;
+	turnCount = 0;
+	optimal = level+2;
+
+	tris = InitTris(level);
+	coords = InitCoords(triangle[0],triangle[1],triangle[2],tris);
+	shadePos = RandomPos(coords.length);
+	shaded = InitShadedTri(coords, shadePos);
+	pointPos =  RandomPos(3);
+	point = InitPoint(pointPos);
+	
+}
+
+
 //Narrative: Initializes all triangles that make up partial sierpinski triangle in barycentric coords
 //Preconditions: A level of the partial triangle must be input, level must be at least 1 and no more than ~8 or it will lag hard
 //Postconditions: Triangles are initialized in an array, in barycentric coords
@@ -208,16 +227,17 @@ ctx.scale(1,-1);
 var PAD = 5;
 var triangle = [[PAD,PAD],[canvas.width-PAD,PAD],[canvas.width/2,canvas.height-PAD]];
 
-var level = 3;
+var level;
+var turnCount;
+var optimal;
 
-var tris = InitTris(level);
-var coords = InitCoords(triangle[0],triangle[1],triangle[2],tris);
-var shadePos = RandomPos(coords.length);
-var shaded = InitShadedTri(coords, shadePos);
-var pointPos =  RandomPos(3);
-var point = InitPoint(pointPos);
-var turnCount = 0;
-var optimal = level+2;
+var tris;
+var coords;
+var shadePos;
+var shaded;
+var pointPos;
+var point;
+InitGame(3);
 
 window.addEventListener("resize", ResizeCanvas);
 
