@@ -17,20 +17,10 @@ function InitGame(lev) {
 
 }
 
-<<<<<<< HEAD:createboard.js
-<<<<<<< HEAD:createboard.js
-
-<<<<<<< HEAD
 function CallRestart(){
     RestartGame(level);
 }
-=======
->>>>>>> a6f9458d8586798a485048128d493bc5d5e405ff:proto.js
-=======
->>>>>>> a6f9458d8586798a485048128d493bc5d5e405ff:proto.js
 
-=======
->>>>>>> a6f9458d8586798a485048128d493bc5d5e405ff
 
 //Narrative: Completley Restarts the game
 //Preconditions: nothing
@@ -198,11 +188,7 @@ function ContainerSize() {
     return sizeArr;
 }
 
-<<<<<<< HEAD:createboard.js
-<<<<<<< HEAD:createboard.js
 
-<<<<<<< HEAD
-<<<<<<< HEAD:proto.js
 $('input[type="range"]').on('mousemove touchmove', function() {
 
   $val = $(this).val();
@@ -211,30 +197,12 @@ $('input[type="range"]').on('mousemove touchmove', function() {
   $thumb.css('background-position-x', $val + '%');
 });
 
-const input = document.querySelector("input");
-=======
-=======
->>>>>>> a6f9458d8586798a485048128d493bc5d5e405ff
-=======
 
->>>>>>> a6f9458d8586798a485048128d493bc5d5e405ff:proto.js
-=======
-
->>>>>>> a6f9458d8586798a485048128d493bc5d5e405ff:proto.js
 //Narrative: Sets the level to what the level slider is at
 //Preconditions: The canvas must exist
 //Postconditions: The level is reset
 function SetLevel(){
-<<<<<<< HEAD:createboard.js
-<<<<<<< HEAD:createboard.js
-<<<<<<< HEAD
->>>>>>> a6f9458d8586798a485048128d493bc5d5e405ff:createboard.js
-=======
->>>>>>> a6f9458d8586798a485048128d493bc5d5e405ff
-=======
->>>>>>> a6f9458d8586798a485048128d493bc5d5e405ff:proto.js
-=======
->>>>>>> a6f9458d8586798a485048128d493bc5d5e405ff:proto.js
+
 
     var newLevel = document.getElementById("myRange").value;
 
