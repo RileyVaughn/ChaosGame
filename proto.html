@@ -17,19 +17,19 @@
 <body>
 
     <!--    Navigation-->
-    <div id="navContainer" class="container-fluid">
+    <div id="navContainer" class="container-fluid mb-2">
         <nav class="navbar navbar-expand-md navbar-light bg-light">
-            <a id="logoWrap" class="navbar-brand" href="#"><img id="logo" src="images/chaoslogo.png"></a>
+            <a id="logoWrap" class="navbar-brand" href="#"><img id="logo" src="images/ChaosLogoLarge.png"></a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
 
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav mr-auto">
-                    <li class="nav-item">
+                <ul class="navbar-nav d-flex justify-content-between">
+                    <li class="nav-item d-inline">
                         <a class="nav-link" onclick="CallRestart()">Restart Game</a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item d-inline">
                         <a class="nav-link" data-toggle="modal" data-target="#myModal">Instructions</a>
                         <!-- The Modal -->
                         <div class="modal" id="myModal">
@@ -71,8 +71,9 @@
                             </div>
                         </div>
                     </li>
-                    <li class="nav-item">
-                        Difficulty:
+                    
+                    <li id="Difficulty" class="nav-item flex">
+                        <a class="nav-link d-inline-block">Difficulty:</a>
                         <input type="range" min="1" max="4" value="1" class="slider" id="myRange">
                     </li>
 
@@ -99,8 +100,33 @@
 
             </div>
         </div>
-
+        
+<!--
         <div class="row">
+            <div class="col text-center">
+                <p id="MovesMade"></p>
+                <p id="MovesNeeded"></p>
+            </div>
+        </div>
+-->
+        
+        <div id="CounterRow" class="row">
+            <div class="col text-center d-flex flex-column align-items-center pt-4 pb-4">
+                <p id="CounterTitle">Moves</p>
+                <div id="MoveCounter" class="d-flex flex-row">
+                    <div class ="CounterElement">
+                        <p class="CounterLabel">Made: </p>
+                        <p id="MovesMade"></p>
+                    </div>
+                    <div class ="CounterElement">
+                        <p class="CounterLabel">Optimal: </p>
+                        <p id="MovesNeeded"></p>
+                    </div>
+                </div>    
+            </div>
+        </div>
+
+        <div class="ButtonRow row">
             <div class="col text-center"></div>
             <div class="col text-center">
                 <button id="Top" onclick="MovePoint(2)"></button>
@@ -108,15 +134,15 @@
             <div class="col text-center"></div>
         </div>
 
-        <div class="row">
-            <div class="text-center"></div>
-            <div id=CanvasCol class="mx-auto">
+        <div id="TriangleRow" class="row">
+            <div class="col-2 mx-auto text-center"></div>
+            <div id= "CanvasCol" class="col-8 d-flex justify-content-center">
                 <canvas id="Canvas"></canvas>
             </div>
-            <div class="text-center"></div>
+            <div class="col-2 mx-auto text-center"></div>
         </div>
 
-        <div class="row">
+        <div id="BottomButtonRow" class="ButtonRow row">
             <div class="col text-center">
                 <button id="Left" onclick="MovePoint(0)"></button>
             </div>
@@ -133,8 +159,9 @@
     <script src="init.js"></script>
 	<script src="createboard.js"></script>
 	<script src="draw.js"></script>
+    <script>RestartGame(level);</script>
 	<script src="move.js"></script>
-	<script>RestartGame(level);</script>
+	
 </body>
 
 </html>

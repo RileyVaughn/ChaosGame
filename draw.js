@@ -56,6 +56,6 @@ function DrawPoint(ctx, point) {
 
     ctx.fillStyle = "red"
     ctx.beginPath();
-    ctx.arc(point[0], point[1], 4, 0, Math.PI * 2);
+    ctx.arc(point[0], point[1], 6, 0, Math.PI * 2);
     ctx.fill();
 }

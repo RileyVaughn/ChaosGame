@@ -189,35 +189,44 @@ function ContainerSize() {
 }
 
 
-$('input[type="range"]').on('mousemove touchmove', function() {
-
-  $val = $(this).val();
-  $thumb = $(this).siblings('.thumb');
- 
-  $thumb.css('background-position-x', $val + '%');
-});
-
-
 //Narrative: Sets the level to what the level slider is at
 //Preconditions: The canvas must exist
 //Postconditions: The level is reset
 function SetLevel(){
-
-
+    
+    var thumb = document.getElementById("myRange");
+    
     var newLevel = document.getElementById("myRange").value;
+    
+    var color="green";
+    
+    switch(newLevel){
+        case "1":
+            color="green";
+            break;
+        case"2":
+            color="yellow";
+            break;
+        case "3":
+            color="orange";
+            break;
+        case"4":
+            color="red";
+            break;
+    }
+    
+    thumb.style.backgroundColor=color;
 
     level = parseInt(newLevel)+1;
     
     RestartGame(level);
 }
 
-
-
-
 window.addEventListener("resize", ResizeCanvas);
-
 
 window.addEventListener("input", SetLevel);
 const input = document.querySelector("input");
 input.addEventListener("input",SetLevel);
+
+
 

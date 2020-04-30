@@ -13,10 +13,18 @@ body {
     padding: 0;
 }
 
+.navbar-nav{
+    align-items: flex-start;
+    font-size: .75em;
+    width:100%;
+}
+
+.bg-light{
+    background: #e3e3e3 !important;
+}
+
 .navbar-light {
-
     height: 10%;
-
 }
 
 .navbar-light .navbar-toggler {
@@ -25,19 +33,57 @@ body {
 
 #logoWrap {
     font-size: 1em;
-    width: 35%;
+    width: 40%;
 }
 
 #logo {
-    height: 40%;
-    width: 40%;
+    height: 100%;
+    width: 100%;
 }
+
+/****************** Nav Contents ***************/
+
+#Difficulty{
+    width: 75%;
+}
+
+.slider {
+    -webkit-appearance: none;
+    width: 75%;
+    height: 15px;
+    background: green;
+    outline: none;
+    opacity: 0.7;
+    -webkit-transition: .2s;
+    transition: opacity .2s;
+}
+
+.slider:hover {
+    opacity: 1;
+}
+
+.slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    background: #e3e3e3;
+    border: 1px solid black;
+    border-radius: 10%;
+    cursor: pointer;
+    height: 20px;
+    width: 25px; 
+}
+
+
+/*****************************************|
+|                  TopNav                 |
+|*****************************************/
+
 
 #bodyContainer {
     display: flex;
     flex-direction: column;
     height: 90%;
-    justify-content: center;
+    justify-content: flex-start;
 }
 
 #CanvasCol {
@@ -52,36 +98,40 @@ button {
     padding: 15px;
 }
 
-/****************** Nav Contents ***************/
+/******************************************|
+|              Move Counter                |
+|******************************************/
 
-.slider {
-    -webkit-appearance: none;
-    width: 75%;
-    height: 15px;
-    background: #d3d3d3;
-    outline: none;
-    opacity: 0.7;
-    -webkit-transition: .2s;
-    transition: opacity .2s;
+#CounterRow{
+    margin-bottom: 70px;
 }
 
-.slider:hover {
-    opacity: 1;
+#MoveCounter{
+    border: 1px solid #e3e3e3;
 }
 
-.slider::-webkit-slider-thumb {
-    -webkit-appearance: none;
-    appearance: none;
-    width: 25px;
-    height: 20px;
-    background: #4CAF50;
-    cursor: pointer;
+.CounterLabel{
+    background-color: #e3e3e3;
+    margin:0;
+    padding: 5px;
+}
+
+.CounterElement{
+    display: flex;
+}
+
+#MovesMade,#MovesNeeded,#CounterTitle{
+    margin:0;
+    padding: 5px;
 }
 
 /******************************************|
 |                 Buttons                  |
 |******************************************/
 
+.ButtonRow{
+    padding 20px 0;
+}
 
 #Top {
     background-color: red;
@@ -101,12 +151,56 @@ button {
 /******************************************|
 |                Media Queries             |
 |******************************************/
-@media only screen and (min-width: 600px) {
-  
-}
 
 @media only screen and (min-width: 768px) {
-  
+    .navbar-nav{
+        font-size: 1em;
+    }
+    
+    #logoWrap {
+        font-size: 1em;
+        width: 20%;
+    }
+    
+    #Difficulty{
+        width:60%;
+    }
+    
+    .slider{
+        width:70%;
+    }
+    
+    #CounterRow{
+        margin-bottom: 0;
+    }
+    
 }
 
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px){
+    .navbar-nav{
+        align-items: center;
+        font-size: 1.3em;
+    }
+    
+    #TriangleRow{
+        height:68%;
+    }
+    
+    #CanvasCol{
+        height:100%;
+    }
+    
+    #BottomButtonRow{
+        height:68%;
+    }
+}
 
+@media only screen and (min-width: 1440px){
+
+    #logo {
+        height: 80%;
+        width: 80%;
+    }
+
+}

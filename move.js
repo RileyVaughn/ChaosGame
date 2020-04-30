@@ -66,3 +66,15 @@ $("#winModal").on('shown.bs.modal', function () {
 
 });
 
+var made = document.getElementById("MovesMade");
+var needed = document.getElementById("MovesNeeded");
+
+SetScoreboard();
+
+window.addEventListener("click",SetScoreboard);
+
+function SetScoreboard(){
+    made.innerHTML = turnCount;
+    needed.innerHTML = optimal;
+}
+
