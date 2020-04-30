@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang='en'>
+
+<head>
+    <title>Chaos Game</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href='https://fonts.googleapis.com/css?family=Raleway' rel='stylesheet'>
+    <link rel="stylesheet" href="normalize.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <script src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
+</head>
+
+<body>
+
+    <!--    Navigation-->
+    <div id="navContainer" class="container-fluid mb-2">
+        <nav class="navbar navbar-expand-md navbar-light bg-light">
+            <a id="logoWrap" class="navbar-brand" href="#"><img id="logo" src="images/ChaosLogoLarge.png"></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav d-flex justify-content-between">
+                    <li class="nav-item d-inline">
+                        <a class="nav-link" onclick="CallRestart()">Restart Game</a>
+                    </li>
+                    <li class="nav-item d-inline">
+                        <a class="nav-link" data-toggle="modal" data-target="#myModal">Instructions</a>
+                        <!-- The Modal -->
+                        <div class="modal" id="myModal">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+
+                                    <!-- Modal Header -->
+                                    <div id="modalHeader" class="modal-header">
+                                        <h1 class="modal-title">The Chaos Game</h1>
+                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                    </div>
+
+                                    <!-- Modal body -->
+                                    <div class="modal-body">
+                                        <h2>How to Play the Chaos Game</h2>
+                                        <p>You should see a game board that consists of the Sierpinski triangle and three movement buttons near each of the triangle's vertices.</p>
+                                        <p>One of the interior triangles is shaded; this is the Target.</p>
+                                        <p>You should also see a point colored red on one of the three vertices</p>
+                                        <p>Your goal is to move the red point into the INTERIOR of the Target in as few moves as possible. If the red point is exactly on the edge of the shaded triangle, it will not count.</p>
+                                        <p>Each time you make a "move" in the chaos game, this point will move to a new location in the game board. This becomes your current location.
+                                        </p>
+										<br>
+                                        <h2>The Moves</h2>
+                                        <p>There are three possible moves in this chaos game.</p>
+                                        <p>If you click on the top (red) vertex, your current location moves half the distance to the topmost vertex.</p>
+                                        <p>Similarly, clicking on the lower left (blue) or lower right (green) vertex, moves the current location half the distance to that vertex.</p>
+                                        <p>By a judicious choice of moves, you should be able to move the red point into the INTERIOR of the Target in just x moves depending on the level.</p>
+                                        <p>This is indicated in the Optimal window. Your score (the number of moves you have made) is recorded in the window called Made.</p>
+										<br>
+                                        <h2>Resetting the Target</h2>
+                                        <p>To replay the same Level, click on the Restart button. To change to a new Level move the silder. The computer randomly selects a new Target.</p>
+										<br>
+                                        <h2>The Algorithm</h2>
+										<p> In order to play optimally, you will have to devlop an algorithm. Once you've developed the correct algorithm, it should work on all levels. </p>
+										<br>
+                                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    
+                    <li id="Difficulty" class="nav-item flex">
+                        <a class="nav-link d-inline-block">Difficulty:</a>
+                        <input type="range" min="1" max="4" value="1" class="slider" id="myRange">
+                    </li>
+
+                </ul>
+            </div>
+        </nav>
+    </div>
+
+
+    <div id="bodyContainer" class="container">
+
+
+        <!-- Modal -->
+        <div class="modal fade" id="winModal" role="dialog">
+            <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title"><strong>Congratulations,</strong> you won! </h4>
+                    </div>
+                    <button onclick="CallRestart()" type="button" class="btn btn-primary" id="myBtn">Restart</button>
+                </div>
+
+            </div>
+        </div>
+        
+<!--
+        <div class="row">
+            <div class="col text-center">
+                <p id="MovesMade"></p>
+                <p id="MovesNeeded"></p>
+            </div>
+        </div>
+-->
+        
+        <div id="CounterRow" class="row">
+            <div class="col text-center d-flex flex-column align-items-center pt-4 pb-4">
+                <p id="CounterTitle">Moves</p>
+                <div id="MoveCounter" class="d-flex flex-row">
+                    <div class ="CounterElement">
+                        <p class="CounterLabel">Made: </p>
+                        <p id="MovesMade"></p>
+                    </div>
+                    <div class ="CounterElement">
+                        <p class="CounterLabel">Optimal: </p>
+                        <p id="MovesNeeded"></p>
+                    </div>
+                </div>    
+            </div>
+        </div>
+
+        <div class="ButtonRow row">
+            <div class="col text-center"></div>
+            <div class="col text-center">
+                <button id="Top" onclick="MovePoint(2)"></button>
+            </div>
+            <div class="col text-center"></div>
+        </div>
+
+        <div id="TriangleRow" class="row">
+            <div class="col-2 mx-auto text-center"></div>
+            <div id= "CanvasCol" class="col-8 d-flex justify-content-center">
+                <canvas id="Canvas"></canvas>
+            </div>
+            <div class="col-2 mx-auto text-center"></div>
+        </div>
+
+        <div id="BottomButtonRow" class="ButtonRow row">
+            <div class="col text-center">
+                <button id="Left" onclick="MovePoint(0)"></button>
+            </div>
+            <div id="result" class="col text-center"></div>
+            <div class="col text-center">
+                <button id="Right" onclick="MovePoint(1)"></button>
+            </div>
+        </div>
+
+    </div>
+
+
+    <script src="tri.js"></script>
+    <script src="init.js"></script>
+	<script src="createboard.js"></script>
+	<script src="draw.js"></script>
+    <script>RestartGame(level);</script>
+	<script src="move.js"></script>
+	
+</body>
+
+</html>
