@@ -45,25 +45,26 @@
                                     <!-- Modal body -->
                                     <div class="modal-body">
                                         <h2>How to Play the Chaos Game</h2>
-                                        <p>When you open the chaos game, you see a game board that consists of the Sierpinski triangle.</p>
-                                        <p>One of these triangles is colored green; this is the Target.</p>
-                                        <p>You also see a point colored red at the lower right hand corner of the triangle. This is the Seed.</p>
-                                        <p>Your goal is to move the Seed into the INTERIOR of the Target in as few moves as possible.</p>
+                                        <p>You should see a game board that consists of the Sierpinski triangle and three movement buttons near each of the triangle's vertices.</p>
+                                        <p>One of the interior triangles is shaded; this is the Target.</p>
+                                        <p>You should also see a point colored red on one of the three vertices</p>
+                                        <p>Your goal is to move the red point into the INTERIOR of the Target in as few moves as possible. If the red point is exactly on the edge of the shaded triangle, it will not count.</p>
                                         <p>Each time you make a "move" in the chaos game, this point will move to a new location in the game board. This becomes your current location.
                                         </p>
+										<br>
                                         <h2>The Moves</h2>
                                         <p>There are three possible moves in this chaos game.</p>
                                         <p>If you click on the top (red) vertex, your current location moves half the distance to the topmost vertex.</p>
                                         <p>Similarly, clicking on the lower left (blue) or lower right (green) vertex, moves the current location half the distance to that vertex.</p>
-                                        <p>By a judicious choice of moves, you should be able to move the seed into the INTERIOR of the Target in just x moves depending on the level.</p>
-                                        <p>This is indicated in the Best Score window. Your score (the number of moves you have made) is recorded in the window called Your Score.</p>
+                                        <p>By a judicious choice of moves, you should be able to move the red point into the INTERIOR of the Target in just x moves depending on the level.</p>
+                                        <p>This is indicated in the Optimal window. Your score (the number of moves you have made) is recorded in the window called Made.</p>
+										<br>
                                         <h2>Resetting the Target</h2>
-                                        <p>To replay the current game again (without changing Target, click on Try Again. To change to a new Target, click on Restart. The computer randomly selects a new Target.</p>
+                                        <p>To replay the same Level, click on the Restart button. To change to a new Level move the silder. The computer randomly selects a new Target.</p>
+										<br>
                                         <h2>The Algorithm</h2>
-                                        <p>There is an algorithm for moving the starting point into the interior of the Target in exactly 4 moves, no matter what Target you start with. Your job is to discover this algorithm. You should be able to explain in advance how to move the Starting Point into the Target in a couple of sentences, no matter where the Target is located.</p>
-                                        <h2>Game Modes</h2>
-                                        <p>In the game menu you will see a difficulty slider. Adjusting the slider will lead you to find chaos games with a Target at deeper levels of the Sierpinski triangle. The algorithm that you developed at the Novice level should help you maneuver through these more difficult games</p>
-
+										<p> In order to play optimally, you will have to devlop an algorithm. Once you've developed the correct algorithm, it should work on all levels. </p>
+										<br>
                                         <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
                                     </div>
 
